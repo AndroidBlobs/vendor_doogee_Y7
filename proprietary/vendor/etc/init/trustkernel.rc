@@ -1,0 +1,39 @@
+on post-fs
+	write /proc/bootprof "tkcore: prepare system ta path"
+	chown system system /vendor/app/t6
+
+	mount ext4 /dev/block/platform/soc/soc:ap-ahb/20600000.sdio/by-name/tee_persist \
+		/vendor/persist nosuid noatime nodev \
+		wait noauto_da_alloc
+
+	start mkpersistfsd
+
+on property:vendor.trustkernel.persist_fs.state=wipe
+	# mkfs
+	exec - root root -- /system/bin/mke2fs -t ext4 -b 4096 \
+		/dev/block/platform/soc/soc:ap-ahb/20600000.sdio/by-name/tee_persist
+	exec - root root -- /system/bin/e2fsdroid -e -a /vendor/persist \
+		/dev/block/platform/soc/soc:ap-ahb/20600000.sdio/by-name/tee_persist
+
+	# try remount
+	mount ext4 /dev/block/platform/soc/soc:ap-ahb/20600000.sdio/by-name/tee_persist \
+		/vendor/persist nosuid noatime nodev \
+		wait noauto_da_alloc
+
+	setprop vendor.trustkernel.persist_fs.state remount
+
+on property:vendor.trustkernel.persist_fs.state=ready
+	write /proc/bootprof "tkcore: prepare persist sfs"
+	mkdir /vendor/persist/t6
+	chown system system /vendor/persist/t6
+	restorecon /vendor/persist
+
+service mkpersistfsd /vendor/bin/mkpersistfsd \
+		--path /vendor/persist \
+		--dev /dev/block/platform/soc/soc:ap-ahb/20600000.sdio/by-name/tee_persist \
+		--proprefix vendor.trustkernel
+	user system
+	group system
+	class core
+	oneshot
+	disabled

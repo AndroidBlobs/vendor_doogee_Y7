@@ -1,0 +1,6 @@
+service ylog_lite /vendor/bin/ylog_lite
+    class main
+    socket ylog seqpacket 0666 ylog ylog
+    user root
+    disabled
+    writepid /dev/cpuset/system-background/tasks

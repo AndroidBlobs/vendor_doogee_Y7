@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<root>
+    <enhance version="1809031420" />
+    <slp_config>
+        <param brightness="64" />
+        <param conversion_matrix="0" />
+        <param brightness_step="1" />
+        <param second_bright_factor="24" />
+        <param first_percent_th="50" />
+        <param first_max_bright_th="48" />
+    </slp_config>
+    <slp_mapping_table>
+        <table mode="normal">
+            <item ambient="16" brightness="0" />
+            <item ambient="2000" brightness="32" />
+            <item ambient="3000" brightness="36" />
+            <item ambient="4000" brightness="40" />
+            <item ambient="8000" brightness="44" />
+            <item ambient="10000" brightness="50" />
+            <item ambient="20000" brightness="60" />
+            <item ambient="30000" brightness="64" />
+        </table>
+        <table mode="low power">
+            <item ambient="16" brightness="0" />
+            <item ambient="2000" brightness="32" />
+            <item ambient="3000" brightness="36" />
+            <item ambient="4000" brightness="40" />
+            <item ambient="8000" brightness="44" />
+            <item ambient="10000" brightness="50" />
+            <item ambient="20000" brightness="60" />
+            <item ambient="30000" brightness="64" />
+        </table>
+    </slp_mapping_table>
+    <bl_mapping_table>
+        <table mode="normal">
+            <item ambient="16" brightness="30" />
+            <item ambient="80" brightness="50" />
+            <item ambient="2000" brightness="102" />
+            <item ambient="3000" brightness="180" />
+            <item ambient="4000" brightness="200" />
+            <item ambient="8000" brightness="210" />
+            <item ambient="10000" brightness="220" />
+            <item ambient="20000" brightness="255" />
+        </table>
+        <table mode="low power">
+            <item ambient="16" brightness="25" />
+            <item ambient="100" brightness="45" />
+            <item ambient="2000" brightness="85" />
+            <item ambient="3000" brightness="102" />
+            <item ambient="4000" brightness="180" />
+            <item ambient="8000" brightness="200" />
+            <item ambient="10000" brightness="210" />
+            <item ambient="20000" brightness="230" />
+        </table>
+    </bl_mapping_table>
+</root>

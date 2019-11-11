@@ -1,0 +1,10 @@
+on post-fs-data
+#add for microarray fingerprint
+    chmod 660 /dev/madev0
+    mkdir /data/system/ma_fingerprint 0770 system system
+    chown system system /dev/madev0
+
+# add for fingerprint app function
+    mkdir /data/sprd 0770 system system
+    mkdir /data/sprd/launchappdata 0770 system system
+    mkdir /data/sprd/applock 0770 system system
